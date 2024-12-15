@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cool To-Do List</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zen+Dots&display=swap" rel="stylesheet">
+
+  <!-- CSS Directly in HTML -->
+  <style>
+    /* Body Styling */
+    body {
+      font-family: 'Zen Dots', cursive;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.hdqwalls.com/wallpapers/luffy-the-last-hope-yd.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Container with Rounded Corners */
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+      backdrop-filter: blur(10px); /* Blur effect */
+      border-radius: 20px; /* Rounded corners */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      animation: slideIn 1s ease-in-out;
+      background-image: url('https://images.hdqwalls.com/wallpapers/luffy-the-last-hope-yd.jpg'); 
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Title with Drop Animation */
+    h1 {
+      text-align: center;
+      color: #fff;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 24px;
+      margin-bottom: 20px;
+      animation: dropIn 1.5s ease-out;
+    }
+
+    @keyframes dropIn {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Input Section Styling */
+    .input-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    #todoInput {
+      width: 75%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #addButton {
+      width: 20%;
+      padding: 10px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    #addButton:hover {
+      background-color: #e64a19;
+      transform: scale(1.1);
+    }
+
+    /* Task List Styling */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      margin: 5px 0;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Zen Dots', cursive;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .delete {
+      background: #d9534f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .delete:hover {
+      background: #c9302c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>My Cool To-Do List</h1>
+    </header>
+
+    <section class="input-section">
+      <input type="text" id="todoInput" placeholder="Add a new task..." />
+      <button id="addButton">Add Task</button>
+    </section>
+
+    <ul id="todoList">
+      <!-- Tasks will be added dynamically -->
+    </ul>
+  </div>
+
+  <!-- JavaScript Directly in HTML -->
+  <script>
+    const addButton = document.getElementById('addButton');
+    const todoInput = document.getElementById('todoInput');
+    const todoList = document.getElementById('todoList');
+
+    addButton.addEventListener('click', function () {
+      const task = todoInput.value.trim();
+      if (task === '') return;
+
+      const li = document.createElement('li');
+      li.textContent = task;
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.className = 'delete';
+      deleteButton.addEventListener('click', function () {
+        li.remove();
+      });
+
+      li.appendChild(deleteButton);
+      todoList.appendChild(li);
+
+      todoInput.value = '';
+    });
+  </script>
+</body>
+
+</html>
